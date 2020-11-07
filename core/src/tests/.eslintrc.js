@@ -4,6 +4,6 @@ module.exports = {
 		sinon: true,
 	},
 	rules: {
-		"node/no-unpublished-import": 'off'
-	}
+		'node/no-unpublished-import': 'off',
+	},
 }

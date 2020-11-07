@@ -2,7 +2,7 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
 
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const BabelLoaderExcludeNodeModulesExcept = require('babel-loader-exclude-node-modules-except')
 
@@ -131,6 +131,14 @@ module.exports = []
 				OCA: path.resolve(__dirname, './core/src/OCA'),
 				// make sure to use the handlebar runtime when importing
 				handlebars: 'handlebars/runtime',
+			},
+			// polyfill node modules
+			fallback: {
+				buffer: require.resolve('buffer/'),
+				crypto: require.resolve('crypto-browserify'),
+				path: require.resolve('path-browserify'),
+				stream: require.resolve('stream-browserify'),
+				util: require.resolve('util/'),
 			},
 		},
 	}, config))

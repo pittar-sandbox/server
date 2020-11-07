@@ -177,7 +177,9 @@ export default {
 	},
 	methods: {
 		passwordResetFinished() {
+			// eslint-disable-next-line vue/no-mutating-props
 			this.resetPasswordTarget = ''
+			// eslint-disable-next-line vue/no-mutating-props
 			this.directLogin = true
 		},
 	},
