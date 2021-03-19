@@ -46,6 +46,7 @@ class SearchController extends Controller {
 
 	/**
 	 * @NoAdminRequired
+	 * @NoCSRFRequired
 	 */
 	public function search(string $query, array $inApps = [], int $page = 1, int $size = 30): JSONResponse {
 		$results = $this->searcher->searchPaged($query, $inApps, $page, $size);
