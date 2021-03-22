@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /**
- * @copyright Copyright (c) 2020 Julius Härtl <jus@bitgrid.net>
+ * @copyright Copyright (c) 2021 Julien Veyssier <eneiluj@posteo.net>
  *
- * @author Julius Härtl <jus@bitgrid.net>
+ * @author Julien Veyssier <eneiluj@posteo.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -16,7 +16,7 @@ declare(strict_types=1);
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -24,14 +24,18 @@ declare(strict_types=1);
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'dashboard#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'dashboard#updateLayout', 'url' => '/layout', 'verb' => 'POST'],
-		['name' => 'dashboard#updateStatuses', 'url' => '/statuses', 'verb' => 'POST'],
-		['name' => 'dashboard#getBackground', 'url' => '/background', 'verb' => 'GET'],
-		['name' => 'dashboard#setBackground', 'url' => '/background/{type}', 'verb' => 'POST'],
+namespace OCP\Dashboard;
 
-		['name' => 'dashboard#getWidgetItems', 'url' => '/api/widget-items', 'verb' => 'POST'],
-	]
-];
+/**
+ * interface IAPIWidget
+ *
+ * @since 22.0.0
+ */
+interface IAPIWidget extends IWidget {
+
+	/**
+	 * @return WidgetItem[] The widget items
+	 * @since 22.0.0
+	 */
+	public function getItems(string $userId, ?string $since = null, int $limit = 7): array;
+}
