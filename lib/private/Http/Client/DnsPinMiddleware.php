@@ -29,8 +29,10 @@ namespace OC\Http\Client;
 use Psr\Http\Message\RequestInterface;
 
 class DnsPinMiddleware {
-	private NegativeDnsCache $negativeDnsCache;
-	private LocalAddressChecker $localAddressChecker;
+	/** @var NegativeDnsCache */
+	private $negativeDnsCache;
+	/** @var LocalAddressChecker */
+	private $localAddressChecker;
 
 	public function __construct(
 		NegativeDnsCache $negativeDnsCache,

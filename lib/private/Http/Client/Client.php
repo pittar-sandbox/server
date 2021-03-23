@@ -56,7 +56,8 @@ class Client implements IClient {
 	private $logger;
 	/** @var ICertificateManager */
 	private $certificateManager;
-	private LocalAddressChecker $localAddressChecker;
+	/** @var LocalAddressChecker */
+	private $localAddressChecker;
 
 	public function __construct(
 		IConfig $config,
