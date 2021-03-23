@@ -30,7 +30,8 @@ use OCP\ICache;
 use OCP\ICacheFactory;
 
 class NegativeDnsCache {
-	private ICache $cache;
+	/** @var ICache */
+	private $cache;
 
 	public function __construct(ICacheFactory $memcache) {
 		$this->cache = $memcache->createLocal('NegativeDnsCache');
