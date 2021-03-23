@@ -19,10 +19,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { JSDOM } from 'jsdom'
-import { subscribe, unsubscribe } from '@nextcloud/event-bus'
+const { JSDOM } = require('jsdom')
+const { subscribe, unsubscribe } = require('@nextcloud/event-bus')
 
-import { manageToken, setToken } from '../../OC/requesttoken'
+const { manageToken, setToken } = require('../../OC/requesttoken')
 
 describe('request token', () => {
 

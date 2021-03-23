@@ -19,13 +19,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-const { merge } = require('webpack-merge')
-const common = require('./webpack.js')
-// webpack.config.js
-const nodeExternals = require('webpack-node-externals')
+/* eslint-disable node/no-unpublished-import */
+import 'global-jsdom/register'
+import chai from 'chai'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
 
-module.exports = merge(common[0], {
-	mode: 'development',
-	devtool: 'inline-cheap-module-source-map',
-	externals: [nodeExternals()],
-})
+chai.use(sinonChai)
+global.expect = chai.expect
+global.sinon = sinon
+
+// https://github.com/vuejs/vue-test-utils/issues/936
+// better fix for "TypeError: Super expression must either be null or
+// a function" than pinning an old version of prettier.
+//
+// https://github.com/vuejs/vue-cli/issues/2128#issuecomment-453109575
+window.Date = Date
