@@ -101,7 +101,7 @@ class DnsPinMiddleware {
 				];
 
 				if ($port != null) {
-					$port[] = (string)$port;
+					$ports[] = (string)$port;
 				}
 
 				$targetIps = $this->dnsResolve($hostName, 0);

@@ -38,18 +38,18 @@ class LocalAddressChecker {
 	}
 
 	public function ThrowIfLocalIp(string $ip) : void {
-		if ((bool)filter_var($host, FILTER_VALIDATE_IP) && !filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+		if ((bool)filter_var($ip, FILTER_VALIDATE_IP) && !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
 			$this->logger->warning("Host $host was not connected to because it violates local access rules");
 			throw new LocalServerException('Host violates local access rules');
 		}
 
 		// Also check for IPv6 IPv4 nesting, because that's not covered by filter_var
-		if ((bool)filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) && substr_count($host, '.') > 0) {
-			$delimiter = strrpos($host, ':'); // Get last colon
-			$ipv4Address = substr($host, $delimiter + 1);
+		if ((bool)filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) && substr_count($ip, '.') > 0) {
+			$delimiter = strrpos($ip, ':'); // Get last colon
+			$ipv4Address = substr($ip, $delimiter + 1);
 
 			if (!filter_var($ipv4Address, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
-				$this->logger->warning("Host $host was not connected to because it violates local access rules");
+				$this->logger->warning("Host $ip was not connected to because it violates local access rules");
 				throw new LocalServerException('Host violates local access rules');
 			}
 		}
