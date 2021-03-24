@@ -39,7 +39,7 @@ class LocalAddressChecker {
 
 	public function ThrowIfLocalIp(string $ip) : void {
 		if ((bool)filter_var($ip, FILTER_VALIDATE_IP) && !filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
-			$this->logger->warning("Host $host was not connected to because it violates local access rules");
+			$this->logger->warning("Host $ip was not connected to because it violates local access rules");
 			throw new LocalServerException('Host violates local access rules');
 		}
 
