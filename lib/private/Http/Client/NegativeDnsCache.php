@@ -38,7 +38,7 @@ class NegativeDnsCache {
 	}
 
 	private function createCacheKey(string $domain, int $type) : string {
-		return $domain + "-" + (string)$type;
+		return $domain . "-" . (string)$type;
 	}
 
 	public function setNegativeCacheForDnsType(string $domain, int $type, int $ttl) : void {
