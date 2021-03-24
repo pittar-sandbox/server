@@ -37,11 +37,15 @@ class NegativeDnsCache {
 		$this->cache = $memcache->createLocal('NegativeDnsCache');
 	}
 
+	private function createCacheKey(string $domain, int $type) : string {
+		return $domain + "-" + (string)$type;
+	}
+
 	public function setNegativeCacheForDnsType(string $domain, int $type, int $ttl) : void {
-		$this->cache->set($domain + "-" + $type, "true", $ttl);
+		$this->cache->set($this->createCacheKey($domain, $type), "true", $ttl);
 	}
 
 	public function isNegativeCached(string $domain, int $type) : bool {
-		return $this->cache->hasKey($domain + "-" + $type);
+		return $this->cache->hasKey($this->createCacheKey($domain, $type));
 	}
 }
