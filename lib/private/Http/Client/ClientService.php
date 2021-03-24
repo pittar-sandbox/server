@@ -48,7 +48,8 @@ class ClientService implements IClientService {
 	private $logger;
 	/** @var ICertificateManager */
 	private $certificateManager;
-	private DnsPinMiddleware $dnsPinMiddleware;
+	/** @var DnsPinMiddleware */
+	private $dnsPinMiddleware;
 
 	public function __construct(IConfig $config,
 								ILogger $logger,
