@@ -75,7 +75,7 @@ class LocalAddressChecker {
 		}
 
 		// Disallow hostname only
-		if (substr_count($host, '.') === 0) {
+		if (substr_count($host, '.') === 0 && !(bool)filter_var($host, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
 			$this->logger->warning("Host $host was not connected to because it violates local access rules");
 			throw new LocalServerException('Host violates local access rules');
 		}

@@ -50,15 +50,19 @@ class ClientService implements IClientService {
 	private $certificateManager;
 	/** @var DnsPinMiddleware */
 	private $dnsPinMiddleware;
+	/** @var LocalAddressChecker */
+	private $localAddressChecker;
 
 	public function __construct(IConfig $config,
 								ILogger $logger,
 								ICertificateManager $certificateManager,
-								DnsPinMiddleware $dnsPinMiddleware) {
+								DnsPinMiddleware $dnsPinMiddleware,
+								LocalAddressChecker $localAddressChecker) {
 		$this->config = $config;
 		$this->logger = $logger;
 		$this->certificateManager = $certificateManager;
 		$this->dnsPinMiddleware = $dnsPinMiddleware;
+		$this->localAddressChecker = $localAddressChecker;
 	}
 
 	/**
@@ -76,7 +80,7 @@ class ClientService implements IClientService {
 			$this->logger,
 			$this->certificateManager,
 			$client,
-			new LocalAddressChecker($this->logger)
+			$this->localAddressChecker
 		);
 	}
 }
