@@ -791,7 +791,7 @@ $CONFIG = [
  *
  * Defaults to ``true``
  */
-'check_data_directory_permissions' => true,
+'check_data_directory_permissions' => false,
 
 /**
  * In certain environments it is desired to have a read-only configuration file.
